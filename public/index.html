@@ -5,125 +5,135 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>東京地方の天気予報</title>
-    <link rel="stylesheet" href="/dist/bundled.css" />
-    <script src="/script/main.js"></script>
+    <link rel="stylesheet" href="./dist/bundled.css" />
+    <script src="./script/main.js"></script>
   </head>
 
   <body>
-    <div class="max-w-lg mx-auto px-4 pt-6 pb-12">
+    <div class="max-w-3xl mx-auto px-4 pt-6 pb-12">
       <h1 class="flex flex-col text-center gap-2">
         <span class="font-bold text-4xl text-indigo-900">東京</span>
         <span class="text-sm">天気と体感気温</span>
       </h1>
 
-      <div class="flex justify-around mt-8">
-        <div>
-          <h2 class="text-sm">最高体感気温</h2>
-          <div class="flex mt-1">
-            <span class="text-5xl font-bold text-red-600">24</span>
-            <span class="mt-1">°C</span>
-          </div>
-          <div class="flex items-baseline mt-2">
-            <h3 class="text-xs">最高気温</h3>
-            <div class="text-sm ml-1">
-              <span class="text-base font-bold text-red-600">24</span>°C
-            </div>
-          </div>
-        </div>
+      <div class="text-xs text-gray-700 text-center mt-2">
+        この Web サイトでは，実際の天気予報から自動で
+        Windchill（体感気温）を計算して表示しています。
+      </div>
 
+      <div class="flex justify-around mt-8">
         <div>
           <h2 class="text-sm">最低体感気温</h2>
           <div class="flex mt-1">
-            <span class="text-5xl font-bold text-blue-600">16</span>
+            <span class="text-5xl font-bold text-blue-600" id="js-min-windchill"></span>
             <span class="mt-1">°C</span>
           </div>
           <div class="flex items-baseline mt-2">
             <h3 class="text-xs">最低気温</h3>
             <div class="text-sm ml-1">
-              <span class="text-base font-bold text-blue-600">16</span>°C
+              <span
+                class="text-base font-bold text-blue-600"
+                id="js-min-temperature"
+              ></span
+              >°C
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-sm">最高体感気温</h2>
+          <div class="flex mt-1">
+            <span class="text-5xl font-bold text-red-600" id="js-max-windchill"></span>
+            <span class="mt-1">°C</span>
+          </div>
+          <div class="flex items-baseline mt-2">
+            <h3 class="text-xs">最高気温</h3>
+            <div class="text-sm ml-1">
+              <span
+                class="text-base font-bold text-red-600"
+                id="js-max-temperature"
+              ></span
+              >°C
             </div>
           </div>
         </div>
       </div>
 
-      <table class="w-full mt-6 table-auto border-collapse text-center">
-        <tbody>
-          <tr class="h-8">
-            <th class="header-cell">時刻</th>
-            <td>3</td>
-            <td>6</td>
-            <td>9</td>
-            <td>12</td>
-            <td>15</td>
-            <td>18</td>
-            <td>21</td>
-            <td>24</td>
-          </tr>
+      <div class="w-full overflow-x-auto mt-6">
+        <table class="min-w-full table-auto border-collapse text-center">
+          <tbody>
+            <tr class="h-8" id="js-time-row">
+              <th class="header-cell">時刻</th>
+            </tr>
 
-          <tr class="h-10 text-2xl">
-            <th class="header-cell">天気</th>
-            <td>☀️</td>
-            <td>☀️</td>
-            <td>☀️</td>
-            <td>☀️</td>
-            <td>☀️</td>
-            <td>☀️</td>
-            <td>☀️</td>
-            <td>☀️</td>
-          </tr>
+            <tr class="h-10 text-2xl" id="js-weather-row">
+              <th class="header-cell">天気</th>
+            </tr>
 
-          <tr class="h-10">
-            <th class="header-cell">
-              <div class="flex flex-col">
-                体感気温
-                <span class="text-tiny">[°C]</span>
-              </div>
-            </th>
-            <td>18</td>
-            <td class="font-bold text-blue-600">16</td>
-            <td>20</td>
-            <td class="font-bold text-red-600">24</td>
-            <td>22</td>
-            <td>21</td>
-            <td>19</td>
-            <td>17</td>
-          </tr>
+            <tr class="h-10" id="js-wind-chill-row">
+              <th class="header-cell">
+                <div class="flex flex-col">
+                  体感気温
+                  <span class="text-tiny">[°C]</span>
+                </div>
+              </th>
+            </tr>
 
-          <tr class="h-10 text-gray-600">
-            <th class="header-cell">
-              <div class="flex flex-col">
-                気温
-                <span class="text-tiny">[°C]</span>
-              </div>
-            </th>
-            <td>18</td>
-            <td class="font-bold">16</td>
-            <td>20</td>
-            <td class="font-bold">24</td>
-            <td>22</td>
-            <td>21</td>
-            <td>19</td>
-            <td>17</td>
-          </tr>
+            <tr class="h-10 text-gray-600" id="js-temperature-row">
+              <th class="header-cell">
+                <div class="flex flex-col">
+                  気温
+                  <span class="text-tiny">[°C]</span>
+                </div>
+              </th>
+            </tr>
 
-          <tr class="h-10 text-gray-600">
-            <th class="header-cell">
-              <div class="flex flex-col">
-                風速
-                <span class="text-tiny">[m/s]</span>
-              </div>
-            </th>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-            <td>0</td>
-          </tr>
-        </tbody>
-      </table>
+            <tr class="h-10 text-gray-600 text-tiny" id="js-wind-speed-row">
+              <th class="header-cell">
+                <div class="flex flex-col">
+                  風速
+                  <span class="text-tiny">[m/s]</span>
+                </div>
+              </th>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <footer>
+        <p class="text-center text-xs text-gray-500 my-6">
+          データソース:
+          <a
+            href="https://www.jma.go.jp/jma/index.html"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline"
+            >気象庁</a
+          >
+          <br />
+          <a
+            href="https://www.digital.go.jp/resources/open_data/public_data_license_v1.0"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline"
+          >
+            公共データ利用規約（第1.0版） </a
+          >に基づいて気象庁「<a
+            href="https://www.jma.go.jp/bosai/wdist/timeseries.html#area_type=offices&area_code=130000"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline"
+            >地域時系列予報 東京都</a
+          >」を自動で取得・加工して提供しています。
+          <br />
+          Copyright © 2025 ISHIDA Kouji. All rights reserved. (<a
+            href="https://github.com/Jankenman/home-project"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="underline"
+            >GitHub</a
+          >)
+        </p>
+      </footer>
     </div>
   </body>
 </html>

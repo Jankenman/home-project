@@ -5,5 +5,5 @@
 }
 
 .header-cell {
-  @apply font-normal text-xs text-gray-700;
+  @apply font-normal text-xs text-gray-700 whitespace-nowrap sticky top-0 left-0 bg-white pr-1;
 }
