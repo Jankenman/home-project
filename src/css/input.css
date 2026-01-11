@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+@theme {
+  --text-tiny: 0.625rem;
+}
+
+.header-cell {
+  @apply font-normal text-xs text-gray-700;
+}

@@ -8,22 +8,122 @@
     <link rel="stylesheet" href="/dist/bundled.css" />
     <script src="/script/main.js"></script>
   </head>
+
   <body>
     <div class="max-w-lg mx-auto px-4 pt-6 pb-12">
       <h1 class="flex flex-col text-center gap-2">
-        <span class="font-bold text-4xl text-indigo-900 block">
-          東京
-        </span>
-        <span class="text-sm">
-          天気と体感気温
-        </span>
+        <span class="font-bold text-4xl text-indigo-900">東京</span>
+        <span class="text-sm">天気と体感気温</span>
       </h1>
 
-      <div class="flex">
-        <div class="text-center">
-          ☀️
+      <div class="flex justify-around mt-8">
+        <div>
+          <h2 class="text-sm">最高体感気温</h2>
+          <div class="flex mt-1">
+            <span class="text-5xl font-bold text-red-600">24</span>
+            <span class="mt-1">°C</span>
+          </div>
+          <div class="flex items-baseline mt-2">
+            <h3 class="text-xs">最高気温</h3>
+            <div class="text-sm ml-1">
+              <span class="text-base font-bold text-red-600">24</span>°C
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <h2 class="text-sm">最低体感気温</h2>
+          <div class="flex mt-1">
+            <span class="text-5xl font-bold text-blue-600">16</span>
+            <span class="mt-1">°C</span>
+          </div>
+          <div class="flex items-baseline mt-2">
+            <h3 class="text-xs">最低気温</h3>
+            <div class="text-sm ml-1">
+              <span class="text-base font-bold text-blue-600">16</span>°C
+            </div>
+          </div>
         </div>
       </div>
+
+      <table class="w-full mt-6 table-auto border-collapse text-center">
+        <tbody>
+          <tr class="h-8">
+            <th class="header-cell">時刻</th>
+            <td>3</td>
+            <td>6</td>
+            <td>9</td>
+            <td>12</td>
+            <td>15</td>
+            <td>18</td>
+            <td>21</td>
+            <td>24</td>
+          </tr>
+
+          <tr class="h-10 text-2xl">
+            <th class="header-cell">天気</th>
+            <td>☀️</td>
+            <td>☀️</td>
+            <td>☀️</td>
+            <td>☀️</td>
+            <td>☀️</td>
+            <td>☀️</td>
+            <td>☀️</td>
+            <td>☀️</td>
+          </tr>
+
+          <tr class="h-10">
+            <th class="header-cell">
+              <div class="flex flex-col">
+                体感気温
+                <span class="text-tiny">[°C]</span>
+              </div>
+            </th>
+            <td>18</td>
+            <td class="font-bold text-blue-600">16</td>
+            <td>20</td>
+            <td class="font-bold text-red-600">24</td>
+            <td>22</td>
+            <td>21</td>
+            <td>19</td>
+            <td>17</td>
+          </tr>
+
+          <tr class="h-10 text-gray-600">
+            <th class="header-cell">
+              <div class="flex flex-col">
+                気温
+                <span class="text-tiny">[°C]</span>
+              </div>
+            </th>
+            <td>18</td>
+            <td class="font-bold">16</td>
+            <td>20</td>
+            <td class="font-bold">24</td>
+            <td>22</td>
+            <td>21</td>
+            <td>19</td>
+            <td>17</td>
+          </tr>
+
+          <tr class="h-10 text-gray-600">
+            <th class="header-cell">
+              <div class="flex flex-col">
+                風速
+                <span class="text-tiny">[m/s]</span>
+              </div>
+            </th>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+            <td>0</td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </body>
 </html>
